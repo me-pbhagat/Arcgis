@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pranay Bhagat | GIS & Hydrology Specialist</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #EDF1F7;
+  color: #1A2433;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+
+/* ===== NAVIGATION ===== */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 18px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.35s ease;
+}
+#navbar.scrolled {
+  background: rgba(8, 20, 48, 0.96);
+  backdrop-filter: blur(14px);
+  padding: 12px 48px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+.nav-logo {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+.nav-logo span { color: #29B6D8; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 2px;
+  background: #29B6D8;
+  transition: width 0.25s;
+}
+.nav-links a:hover { color: #29B6D8; }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: #1565C0;
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: #0D47A1 !important; }
+.nav-cta::after { display: none !important; }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #060E22 0%, #0A1E3C 40%, #0D2B5E 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.topo-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.c1 { animation: tp 5s ease-in-out infinite; }
+.c2 { animation: tp 5s ease-in-out infinite 0.4s; }
+.c3 { animation: tp 5s ease-in-out infinite 0.8s; }
+.c4 { animation: tp 5s ease-in-out infinite 1.2s; }
+.c5 { animation: tp 5s ease-in-out infinite 1.6s; }
+.c6 { animation: tp 5s ease-in-out infinite 2.0s; }
+.c7 { animation: tp 5s ease-in-out infinite 2.4s; }
+.c8 { animation: tp 5s ease-in-out infinite 2.8s; }
+.c9 { animation: tp 5s ease-in-out infinite 3.2s; }
+@keyframes tp {
+  0%,100% { opacity: 0.07; }
+  50%      { opacity: 0.22; }
+}
+.river { animation: river-flow 6s ease-in-out infinite; }
+@keyframes river-flow {
+  0%,100% { stroke-dashoffset: 0; }
+  100%    { stroke-dashoffset: -400; }
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 120px 24px 60px;
+  max-width: 820px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(41,182,216,0.15);
+  border: 1px solid rgba(41,182,216,0.4);
+  color: #29B6D8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: 30px;
+  margin-bottom: 28px;
+}
+.status-dot {
+  width: 7px; height: 7px;
+  background: #4ADE80;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+@keyframes blink {
+  0%,100%{ box-shadow:0 0 0 0 rgba(74,222,128,0.4);}
+  50%    { box-shadow:0 0 0 5px rgba(74,222,128,0);}
+}
+.hero-name {
+  font-size: clamp(42px, 7vw, 74px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.05;
+  margin-bottom: 18px;
+  letter-spacing: -1px;
+}
+.hero-name .accent { color: #29B6D8; }
+.hero-role {
+  font-size: clamp(15px, 2.2vw, 19px);
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.htag {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.78);
+  font-size: 13px;
+  padding: 7px 16px;
+  border-radius: 24px;
+}
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+.btn-pri {
+  background: linear-gradient(135deg, #1565C0, #0D47A1);
+  color: white;
+  padding: 14px 34px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 6px 24px rgba(21,101,192,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-pri:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(21,101,192,0.55); }
+.btn-sec {
+  border: 2px solid rgba(255,255,255,0.35);
+  color: white;
+  padding: 14px 34px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-sec:hover { border-color: #29B6D8; background: rgba(41,182,216,0.1); color: #29B6D8; }
+.creds {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.cred {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(255,255,255,0.55);
+  font-size: 13px;
+}
+.cred-icon {
+  width: 34px; height: 34px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* ===== STATS BAR ===== */
+#stats {
+  background: #081430;
+  padding: 56px 20px;
+}
+.stats-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stat-box {
+  text-align: center;
+  padding: 20px 10px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.stat-box:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 44px;
+  font-weight: 600;
+  color: #29B6D8;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-lbl {
+  color: rgba(255,255,255,0.45);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ===== SHARED SECTION STYLES ===== */
+.sec {
+  padding: 90px 20px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.sec-eye {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #1565C0;
+  margin-bottom: 10px;
+}
+.sec-title {
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800;
+  color: #060E22;
+  margin-bottom: 14px;
+  line-height: 1.18;
+}
+.sec-sub {
+  color: #64748B;
+  font-size: 16px;
+  max-width: 580px;
+  margin-bottom: 50px;
+  line-height: 1.7;
+}
+.hl-bar {
+  width: 56px; height: 3px;
+  background: linear-gradient(90deg, #1565C0, #29B6D8);
+  border-radius: 2px;
+  margin-bottom: 18px;
+}
+
+/* ===== ABOUT ===== */
+#about-wrap { background: white; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: start;
+}
+.about-text p {
+  color: #374151;
+  font-size: 15.5px;
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+.about-text p:first-child::first-letter {
+  font-size: 46px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  float: left;
+  line-height: 0.8;
+  margin: 8px 8px 0 0;
+  color: #1565C0;
+}
+.qual-box {
+  background: #F0F7FF;
+  border-left: 4px solid #1565C0;
+  border-radius: 0 10px 10px 0;
+  padding: 18px 20px;
+  margin-top: 24px;
+}
+.qual-box h4 {
+  font-size: 14px;
+  color: #1565C0;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.qual-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 6px;
+}
+.qual-item::before { content: '▸'; color: #29B6D8; }
+.skills-panel {}
+.skill-row {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s;
+}
+.skill-row:hover { border-color: #1565C0; }
+.skill-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.skill-name { font-weight: 600; font-size: 14px; color: #0A1E3C; }
+.skill-pct { font-family: 'Roboto Mono', monospace; font-size: 13px; color: #1565C0; font-weight: 600; }
+.sbar { height: 5px; background: #E2E8F0; border-radius: 5px; overflow: hidden; }
+.sfill {
+  height: 100%;
+  background: linear-gradient(90deg, #1565C0, #29B6D8);
+  border-radius: 5px;
+  transition: width 1.4s ease;
+}
+
+/* ===== SERVICES ===== */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+.svc-card {
+  background: white;
+  border: 1.5px solid #E8EEF6;
+  border-radius: 14px;
+  padding: 30px 26px;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, #1565C0, #29B6D8);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.svc-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(21,101,192,0.12); border-color: #c7d8f0; }
+.svc-card:hover::before { transform: scaleX(1); }
+.svc-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+.svc-title { font-size: 17px; font-weight: 700; color: #0A1E3C; margin-bottom: 10px; }
+.svc-desc { color: #64748B; font-size: 14px; line-height: 1.75; margin-bottom: 16px; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.stag {
+  background: #EFF6FF;
+  color: #1565C0;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+/* ===== PORTFOLIO ===== */
+#portfolio-wrap { background: #F4F7FB; }
+.port-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 28px;
+}
+.proj-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.proj-card:hover { transform: translateY(-7px); box-shadow: 0 18px 48px rgba(0,0,0,0.12); }
+.proj-thumb {
+  height: 185px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  position: relative;
+}
+.proj-thumb-1 { background: linear-gradient(135deg, #0D2B5E 0%, #1565C0 60%, #29B6D8 100%); }
+.proj-thumb-2 { background: linear-gradient(135deg, #1B3A00 0%, #2E7D32 55%, #66BB6A 100%); }
+.proj-thumb-3 { background: linear-gradient(135deg, #3E1A00 0%, #795548 55%, #A1887F 100%); }
+.proj-thumb-label {
+  position: absolute;
+  bottom: 12px; left: 12px;
+  background: rgba(0,0,0,0.45);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+.proj-body { padding: 26px; }
+.proj-cat {
+  display: inline-block;
+  background: #EFF6FF;
+  color: #1565C0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+.proj-title { font-size: 19px; font-weight: 700; color: #060E22; margin-bottom: 10px; }
+.proj-desc { color: #64748B; font-size: 14px; line-height: 1.75; margin-bottom: 18px; }
+.proj-outcomes { margin-bottom: 18px; }
+.proj-outcomes li {
+  font-size: 13px;
+  color: #374151;
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-bottom: 5px;
+}
+.proj-outcomes li::before { content: '→'; color: #1565C0; font-weight: 700; flex-shrink: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  background: #F1F5F9;
+  color: #475569;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* ===== PRICING ===== */
+#pricing-wrap { background: #070F22; }
+.pricing-head { color: white; }
+.pricing-head .sec-sub { color: rgba(255,255,255,0.45); }
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+}
+.price-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 38px 30px;
+  position: relative;
+  transition: transform 0.25s, background 0.25s;
+}
+.price-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.07); }
+.price-card.best {
+  border-color: #29B6D8;
+  background: rgba(41,182,216,0.07);
+}
+.best-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #1565C0, #29B6D8);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 5px 18px;
+  border-radius: 14px;
+  white-space: nowrap;
+}
+.price-tier {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #29B6D8;
+  margin-bottom: 8px;
+}
+.price-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 6px;
+}
+.price-use {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 22px;
+}
+.price-amount {
+  margin: 20px 0;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.price-num {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 38px;
+  font-weight: 600;
+  color: white;
+}
+.price-unit { color: rgba(255,255,255,0.45); font-size: 15px; }
+.price-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 22px 0;
+}
+.price-feats { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.price-feats li {
+  color: rgba(255,255,255,0.72);
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+.pcheck { color: #29B6D8; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.price-btn {
+  display: block;
+  margin-top: 30px;
+  text-align: center;
+  padding: 13px 20px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: background 0.2s, border-color 0.2s;
+}
+.price-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.3); }
+.price-card.best .price-btn {
+  background: linear-gradient(135deg, #1565C0, #29B6D8);
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(21,101,192,0.35);
+}
+.price-card.best .price-btn:hover { opacity: 0.9; }
+
+/* ===== CLIENT INQUIRY FORM ===== */
+#inquiry-wrap { background: #EDF1F7; }
+.inq-box {
+  max-width: 780px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.inq-top {
+  background: linear-gradient(135deg, #0A1E3C, #1565C0);
+  padding: 38px 44px;
+  text-align: center;
+}
+.inq-top h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 8px;
+}
+.inq-top p { color: rgba(255,255,255,0.65); font-size: 15px; }
+.inq-body { padding: 44px; }
+.frow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+.fgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.fgroup.full { grid-column: 1 / -1; }
+.fgroup label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  letter-spacing: 0.3px;
+}
+.fgroup label span { color: #EF4444; margin-left: 2px; }
+.fgroup input,
+.fgroup select,
+.fgroup textarea {
+  border: 2px solid #E2E8F0;
+  border-radius: 9px;
+  padding: 13px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #1A2433;
+  outline: none;
+  transition: border-color 0.22s, box-shadow 0.22s, background 0.22s;
+  background: #F8FAFC;
+  width: 100%;
+  appearance: none;
+}
+.fgroup input:focus,
+.fgroup select:focus,
+.fgroup textarea:focus {
+  border-color: #1565C0;
+  box-shadow: 0 0 0 4px rgba(21,101,192,0.1);
+  background: #ffffff;
+}
+.fgroup input::placeholder,
+.fgroup textarea::placeholder { color: #A0AEC0; }
+.fgroup textarea { resize: vertical; min-height: 130px; }
+.fgroup select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B7280' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+.frow-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+.inq-submit {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #0D47A1, #1565C0);
+  color: white;
+  border: none;
+  border-radius: 9px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 6px 22px rgba(21,101,192,0.35);
+  letter-spacing: 0.3px;
+}
+.inq-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(21,101,192,0.45); }
+.inq-submit:active { transform: translateY(0); opacity: 0.92; }
+.inq-note {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 13px;
+  color: #9CA3AF;
+}
+.inq-note a { color: #1565C0; text-decoration: none; }
+/* Success state */
+.success-state {
+  display: none;
+  text-align: center;
+  padding: 50px 44px;
+}
+.success-circle {
+  width: 80px; height: 80px;
+  background: #F0FFF4;
+  border: 3px solid #22C55E;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin: 0 auto 24px;
+  animation: pop 0.4s ease;
+}
+@keyframes pop { 0%{transform:scale(0.5);opacity:0;} 100%{transform:scale(1);opacity:1;} }
+.success-state h3 { font-size: 24px; color: #060E22; margin-bottom: 10px; }
+.success-state p { color: #64748B; font-size: 15px; max-width: 400px; margin: 0 auto 20px; }
+.success-state a {
+  display: inline-block;
+  padding: 11px 28px;
+  background: #1565C0;
+  color: white;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ===== CONTACT ===== */
+#contact-wrap { background: white; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+.contact-dark {
+  background: linear-gradient(160deg, #060E22, #0D2B5E);
+  border-radius: 18px;
+  padding: 38px;
+  color: white;
+}
+.contact-dark h3 { font-size: 22px; margin-bottom: 28px; }
+.c-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.c-item:last-child { margin-bottom: 0; }
+.c-ico {
+  width: 44px; height: 44px;
+  background: rgba(41,182,216,0.15);
+  border: 1px solid rgba(41,182,216,0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.c-lbl { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+.c-val { font-size: 16px; color: white; font-weight: 500; }
+.c-val a { color: #29B6D8; text-decoration: none; }
+.avail-card {
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 38px;
+}
+.avail-card h3 { font-size: 20px; color: #060E22; margin-bottom: 6px; }
+.avail-card .sub { font-size: 14px; color: #64748B; margin-bottom: 28px; }
+.avail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #F1F5F9;
+}
+.avail-row:last-child { border-bottom: none; }
+.a-day { font-size: 14px; color: #374151; font-weight: 500; }
+.a-time { font-size: 13px; color: #1565C0; font-weight: 600; background: #EFF6FF; padding: 3px 10px; border-radius: 5px; }
+.a-closed { font-size: 13px; color: #9CA3AF; background: #F1F5F9; padding: 3px 10px; border-radius: 5px; }
+.avail-note {
+  margin-top: 22px;
+  padding: 14px 16px;
+  background: #F0FFF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #166534;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+/* ===== WHY US ===== */
+#why-wrap { background: #F4F7FB; }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+.why-card {
+  background: white;
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  border-top: 3px solid transparent;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.why-card:hover { border-top-color: #1565C0; transform: translateY(-4px); }
+.why-num {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 38px;
+  font-weight: 600;
+  color: #EDF1F7;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+.why-title { font-size: 16px; font-weight: 700; color: #060E22; margin-bottom: 8px; }
+.why-desc { font-size: 14px; color: #64748B; line-height: 1.7; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #030810;
+  padding: 40px 24px;
+  text-align: center;
+}
+.footer-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+.footer-name span { color: #29B6D8; }
+.footer-role { font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 22px; letter-spacing: 0.5px; }
+.footer-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 24px; }
+.footer-links a { color: rgba(255,255,255,0.45); font-size: 13px; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: #29B6D8; }
+.footer-copy { font-size: 13px; color: rgba(255,255,255,0.25); }
+.footer-copy a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-box:nth-child(2) { border-right: none; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  #navbar { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .stat-box { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .frow, .frow-3 { grid-template-columns: 1fr; }
+  .inq-top, .inq-body, .success-state { padding: 30px 24px; }
+  .contact-dark, .avail-card { padding: 26px; }
+}
+
+/* ===== SCROLL ANIMATION ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Pranay<span>Bhagat</span></a>
+  <div class="nav-links">
+    <a href="#about-wrap">About</a>
+    <a href="#services-wrap">Services</a>
+    <a href="#portfolio-wrap">Portfolio</a>
+    <a href="#pricing-wrap">Pricing</a>
+    <a href="#inquiry-wrap" class="nav-cta">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <svg class="topo-svg" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main peak contours -->
+    <ellipse cx="700" cy="380" rx="55" ry="38" fill="none" stroke="white" stroke-width="0.9" class="c1"/>
+    <ellipse cx="700" cy="380" rx="115" ry="78" fill="none" stroke="white" stroke-width="0.9" class="c2"/>
+    <ellipse cx="700" cy="380" rx="185" ry="125" fill="none" stroke="white" stroke-width="0.9" class="c3"/>
+    <ellipse cx="700" cy="380" rx="265" ry="175" fill="none" stroke="white" stroke-width="0.9" class="c4"/>
+    <ellipse cx="700" cy="380" rx="355" ry="235" fill="none" stroke="white" stroke-width="0.9" class="c5"/>
+    <ellipse cx="700" cy="380" rx="455" ry="300" fill="none" stroke="white" stroke-width="0.9" class="c6"/>
+    <ellipse cx="700" cy="380" rx="565" ry="370" fill="none" stroke="white" stroke-width="0.9" class="c7"/>
+    <ellipse cx="700" cy="380" rx="690" ry="450" fill="none" stroke="white" stroke-width="0.9" class="c8"/>
+    <!-- Secondary peak top-right -->
+    <ellipse cx="1150" cy="130" rx="50" ry="35" fill="none" stroke="white" stroke-width="0.6" class="c2"/>
+    <ellipse cx="1150" cy="130" rx="100" ry="68" fill="none" stroke="white" stroke-width="0.6" class="c4"/>
+    <ellipse cx="1150" cy="130" rx="165" ry="110" fill="none" stroke="white" stroke-width="0.6" class="c6"/>
+    <!-- Secondary peak bottom-left -->
+    <ellipse cx="180" cy="640" rx="55" ry="38" fill="none" stroke="white" stroke-width="0.6" class="c3"/>
+    <ellipse cx="180" cy="640" rx="115" ry="76" fill="none" stroke="white" stroke-width="0.6" class="c5"/>
+    <ellipse cx="180" cy="640" rx="185" ry="120" fill="none" stroke="white" stroke-width="0.6" class="c7"/>
+    <!-- River / drainage line -->
+    <path d="M 0 500 C 120 470 220 490 320 450 S 480 390 580 400 S 700 430 800 390 S 950 330 1100 340 S 1270 360 1400 330"
+      fill="none" stroke="rgba(41,182,216,0.25)" stroke-width="2" stroke-dasharray="12 6" class="river"/>
+    <!-- Grid dots -->
+    <g opacity="0.04">
+      <line x1="0" y1="200" x2="1400" y2="200" stroke="white" stroke-width="0.5"/>
+      <line x1="0" y1="400" x2="1400" y2="400" stroke="white" stroke-width="0.5"/>
+      <line x1="0" y1="600" x2="1400" y2="600" stroke="white" stroke-width="0.5"/>
+      <line x1="233" y1="0" x2="233" y2="800" stroke="white" stroke-width="0.5"/>
+      <line x1="466" y1="0" x2="466" y2="800" stroke="white" stroke-width="0.5"/>
+      <line x1="700" y1="0" x2="700" y2="800" stroke="white" stroke-width="0.5"/>
+      <line x1="933" y1="0" x2="933" y2="800" stroke="white" stroke-width="0.5"/>
+      <line x1="1166" y1="0" x2="1166" y2="800" stroke="white" stroke-width="0.5"/>
+    </g>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="status-dot"></span>
+      Available for New Projects &nbsp;·&nbsp; Nepal
+    </div>
+    <h1 class="hero-name">Pranay<br><span class="accent">Bhagat</span></h1>
+    <p class="hero-role">Registered Civil Engineer &nbsp;·&nbsp; MSc Land &amp; Water Engineering<br>GIS &amp; Hydrology Specialist &nbsp;·&nbsp; ArcGIS Pro Expert</p>
+    <div class="hero-tags">
+      <span class="htag">🗺 Flood Hazard Mapping</span>
+      <span class="htag">💧 Hydrological Analysis</span>
+      <span class="htag">⚡ Hydropower GIS Design</span>
+      <span class="htag">🛰 ArcGIS Pro</span>
+      <span class="htag">📐 Catchment Delineation</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#services-wrap" class="btn-pri">View My Services</a>
+      <a href="#inquiry-wrap" class="btn-sec">Request a Quote →</a>
+    </div>
+    <div class="creds">
+      <div class="cred"><div class="cred-icon">🎓</div><span>MSc Land &amp; Water Engineering</span></div>
+      <div class="cred"><div class="cred-icon">🏛</div><span>Registered Civil Engineer, Nepal</span></div>
+      <div class="cred"><div class="cred-icon">📍</div><span>Serving Nepal &amp; Remote Clients</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-box reveal">
+      <div class="stat-num" data-target="20">0+</div>
+      <div class="stat-lbl">Projects Completed</div>
+    </div>
+    <div class="stat-box reveal" style="transition-delay:0.1s">
+      <div class="stat-num" data-target="30">0+</div>
+      <div class="stat-lbl">Satisfied Clients</div>
+    </div>
+    <div class="stat-box reveal" style="transition-delay:0.2s">
+      <div class="stat-num">5+</div>
+      <div class="stat-lbl">Years Experience</div>
+    </div>
+    <div class="stat-box reveal" style="transition-delay:0.3s">
+      <div class="stat-num">3</div>
+      <div class="stat-lbl">Core Specializations</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div id="about-wrap">
+  <div class="sec">
+    <div class="sec-eye">Who I Am</div>
+    <div class="hl-bar"></div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <h2 class="sec-title">Engineer, Analyst &amp;<br>GIS Specialist</h2>
+        <p>
+          I am a <strong>Registered Civil Engineer</strong> holding a Master of Science degree in Land and Water Engineering. My work sits at the intersection of hydrology, geospatial analysis, and infrastructure design — bringing scientific rigor to real-world water management and engineering challenges across Nepal and beyond.
+        </p>
+        <p>
+          With over five years of hands-on experience, I specialize in <strong>flood hazard mapping</strong>, <strong>watershed and catchment analysis</strong>, and <strong>hydropower layout design</strong> — producing professional-grade spatial outputs using ArcGIS Pro, HEC-HMS, and DEM-based terrain tools.
+        </p>
+        <p>
+          I work with government agencies, private developers, hydropower companies, and academic researchers who need reliable, defensible GIS data and hydrological assessments they can trust.
+        </p>
+        <div class="qual-box">
+          <h4>Qualifications &amp; Tools</h4>
+          <div class="qual-item">MSc Land &amp; Water Engineering</div>
+          <div class="qual-item">Registered Civil Engineer – Nepal Engineering Council</div>
+          <div class="qual-item">ArcGIS Pro · HEC-HMS · AutoCAD · QGIS · Global Mapper</div>
+          <div class="qual-item">DEM Analysis · HEC-RAS · SWAT · Remote Sensing</div>
+        </div>
+      </div>
+      <div class="skills-panel">
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">ArcGIS Pro / Spatial Analysis</span><span class="skill-pct">95%</span></div>
+          <div class="sbar"><div class="sfill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Hydrological Modeling (HEC-HMS)</span><span class="skill-pct">90%</span></div>
+          <div class="sbar"><div class="sfill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Flood Hazard &amp; Risk Mapping</span><span class="skill-pct">92%</span></div>
+          <div class="sbar"><div class="sfill" style="width:92%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Hydropower GIS Layout Design</span><span class="skill-pct">88%</span></div>
+          <div class="sbar"><div class="sfill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Catchment Delineation &amp; DEM</span><span class="skill-pct">93%</span></div>
+          <div class="sbar"><div class="sfill" style="width:93%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Remote Sensing &amp; Shapefile Creation</span><span class="skill-pct">85%</span></div>
+          <div class="sbar"><div class="sfill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Academic Thesis GIS Support</span><span class="skill-pct">95%</span></div>
+          <div class="sbar"><div class="sfill" style="width:95%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div id="services-wrap" style="background:#F4F7FB; padding:1px 0;">
+  <div class="sec">
+    <div class="sec-eye">What I Offer</div>
+    <div class="hl-bar"></div>
+    <h2 class="sec-title reveal">Specialist GIS &amp; Hydrology Services</h2>
+    <p class="sec-sub reveal">From rapid spatial edits to full-scale flood risk assessments and hydropower corridor design — I deliver precise, publication-ready outputs.</p>
+    <div class="svc-grid">
+
+      <div class="svc-card reveal">
+        <span class="svc-icon">🌊</span>
+        <div class="svc-title">Flood Hazard Mapping &amp; Risk Analysis</div>
+        <p class="svc-desc">Full spatial flood risk assessment integrating rainfall data, LiDAR/SRTM terrain, stream network analysis, and HEC-RAS inundation modelling. Outputs include hazard zone maps, depth-velocity grids, and risk classification layers suitable for EIA and disaster risk reports.</p>
+        <div class="svc-tags">
+          <span class="stag">ArcGIS Pro</span>
+          <span class="stag">HEC-RAS</span>
+          <span class="stag">DEM Analysis</span>
+          <span class="stag">Risk Classification</span>
+        </div>
+      </div>
+
+      <div class="svc-card reveal" style="transition-delay:0.1s">
+        <span class="svc-icon">🏔</span>
+        <div class="svc-title">Catchment Delineation &amp; Hydrology</div>
+        <p class="svc-desc">Automated watershed delineation from DEMs, flow direction and accumulation analysis, sub-catchment extraction, and hydrological parameter estimation. Includes time of concentration, runoff curve numbers, and IDF-based design flood computation.</p>
+        <div class="svc-tags">
+          <span class="stag">DEM Processing</span>
+          <span class="stag">HEC-HMS</span>
+          <span class="stag">Flow Routing</span>
+          <span class="stag">Peak Discharge</span>
+        </div>
+      </div>
+
+      <div class="svc-card reveal" style="transition-delay:0.2s">
+        <span class="svc-icon">⚡</span>
+        <div class="svc-title">Hydropower GIS Layout Design</div>
+        <p class="svc-desc">Complete GIS-based alignment of run-of-river hydropower schemes: intake siting, headrace canal corridor, forebay location, penstock profile, and powerhouse placement — overlaid on topographic contour maps and slope analysis for optimum hydraulic gradient.</p>
+        <div class="svc-tags">
+          <span class="stag">Layout Alignment</span>
+          <span class="stag">Penstock Profile</span>
+          <span class="stag">Contour Mapping</span>
+          <span class="stag">Slope Analysis</span>
+        </div>
+      </div>
+
+      <div class="svc-card reveal" style="transition-delay:0.3s">
+        <span class="svc-icon">🛰</span>
+        <div class="svc-title">Spatial Data Analysis &amp; Shapefile Creation</div>
+        <p class="svc-desc">Custom geodatabase design, shapefile and feature class creation, attribute table management, coordinate system transformations, topology checks, and geoprocessing workflows. Ideal for project mapping, land-use analysis, and infrastructure corridor studies.</p>
+        <div class="svc-tags">
+          <span class="stag">Geodatabase</span>
+          <span class="stag">Shapefile</span>
+          <span class="stag">Geoprocessing</span>
+          <span class="stag">CRS Transform</span>
+        </div>
+      </div>
+
+      <div class="svc-card reveal" style="transition-delay:0.4s">
+        <span class="svc-icon">🗺</span>
+        <div class="svc-title">Thematic Map Production</div>
+        <p class="svc-desc">High-quality cartographic output including land-use maps, slope maps, aspect maps, flow accumulation maps, and custom project area maps — formatted for reports, presentations, EIAs, or academic publications with full legend, north arrow, and scale bar.</p>
+        <div class="svc-tags">
+          <span class="stag">Cartography</span>
+          <span class="stag">Map Layout</span>
+          <span class="stag">Land Use</span>
+          <span class="stag">EIA Maps</span>
+        </div>
+      </div>
+
+      <div class="svc-card reveal" style="transition-delay:0.5s">
+        <span class="svc-icon">🎓</span>
+        <div class="svc-title">Academic Thesis GIS Support</div>
+        <p class="svc-desc">End-to-end GIS support for Bachelor's and Master's thesis projects: data collection guidance, methodology design, spatial analysis execution, map figure production, and results interpretation. Covering civil, environmental, and agricultural engineering topics.</p>
+        <div class="svc-tags">
+          <span class="stag">Thesis Support</span>
+          <span class="stag">Data Analysis</span>
+          <span class="stag">Map Figures</span>
+          <span class="stag">Methodology</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div id="portfolio-wrap">
+  <div class="sec">
+    <div class="sec-eye">Selected Work</div>
+    <div class="hl-bar"></div>
+    <h2 class="sec-title reveal">Projects &amp; Case Studies</h2>
+    <p class="sec-sub reveal">A sample of completed engagements spanning flood risk, hydropower, and academic research across Nepal.</p>
+    <div class="port-grid">
+
+      <div class="proj-card reveal">
+        <div class="proj-thumb proj-thumb-1">
+          🌊
+          <span class="proj-thumb-label">Flood Hazard</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-cat">Flood Mapping</span>
+          <div class="proj-title">Bagmati River Flood Hazard Assessment</div>
+          <p class="proj-desc">Comprehensive flood inundation mapping for a 45 km reach of the Bagmati River using 10 m SRTM DEM, 50-year and 100-year return period flows, and HEC-RAS 2D modelling integrated in ArcGIS Pro.</p>
+          <ul class="proj-outcomes">
+            <li>Delineated high, medium, and low hazard zones across 3 municipalities</li>
+            <li>Produced depth-velocity and flood extent maps at 1:25,000 scale</li>
+            <li>Delivered GIS layers for district disaster management plan</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">ArcGIS Pro</span>
+            <span class="chip">HEC-RAS 2D</span>
+            <span class="chip">SRTM DEM</span>
+            <span class="chip">HEC-HMS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal" style="transition-delay:0.1s">
+        <div class="proj-thumb proj-thumb-2">
+          ⚡
+          <span class="proj-thumb-label">Hydropower GIS</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-cat">Hydropower Design</span>
+          <div class="proj-title">6 MW Run-of-River Hydropower Layout</div>
+          <p class="proj-desc">Full GIS-based feasibility layout for a 6 MW run-of-river scheme in Sindhupalchok district: intake siting on 1:10,000 topo sheets, canal alignment optimization, forebay location, and penstock profile extraction with slope analysis.</p>
+          <ul class="proj-outcomes">
+            <li>Identified optimal intake elevation to maximize net head (218 m)</li>
+            <li>Minimized excavation cost by 15% through GIS slope-based routing</li>
+            <li>Produced AutoCAD-ready alignment for detailed design phase</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">ArcGIS Pro</span>
+            <span class="chip">Contour Analysis</span>
+            <span class="chip">AutoCAD</span>
+            <span class="chip">Global Mapper</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal" style="transition-delay:0.2s">
+        <div class="proj-thumb proj-thumb-3">
+          🏔
+          <span class="proj-thumb-label">Watershed Analysis</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-cat">Catchment &amp; Hydrology</span>
+          <div class="proj-title">Trishuli Sub-basin Catchment Delineation</div>
+          <p class="proj-desc">Multi-catchment delineation of a 1,200 km² sub-basin using ALOS PALSAR 12.5 m DEM, ArcHydro toolset, and SCS-CN runoff method. Developed design flood hydrographs for 10, 25, 50, and 100 year return periods for bridge scour analysis.</p>
+          <ul class="proj-outcomes">
+            <li>Delineated 14 sub-catchments with drainage area calculation</li>
+            <li>Computed Q100 peak discharge of 1,340 m³/s for bridge design</li>
+            <li>Submitted as part of Master's thesis with distinction</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">ArcHydro</span>
+            <span class="chip">ALOS PALSAR</span>
+            <span class="chip">SCS-CN</span>
+            <span class="chip">HEC-HMS</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- WHY CHOOSE ME -->
+<div id="why-wrap">
+  <div class="sec">
+    <div class="sec-eye">Why Clients Choose Me</div>
+    <div class="hl-bar"></div>
+    <h2 class="sec-title reveal">Precision. Speed. Reliability.</h2>
+    <div class="why-grid" style="margin-top:0;">
+      <div class="why-card reveal">
+        <div class="why-num">01</div>
+        <div class="why-title">Registered &amp; Qualified</div>
+        <p class="why-desc">Holding both an MSc and a Nepal Engineering Council registration, my outputs meet professional standards required for government submissions, EIAs, and detailed project reports.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.1s">
+        <div class="why-num">02</div>
+        <div class="why-title">Project-Ready Outputs</div>
+        <p class="why-desc">Deliverables aren't just maps — they include geodatabases, metadata, attribute tables, and map layouts formatted to your exact report or submission requirements.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.2s">
+        <div class="why-num">03</div>
+        <div class="why-title">Fast Turnaround</div>
+        <p class="why-desc">I understand project deadlines. Basic GIS tasks are typically delivered in 24–48 hours; complex flood or hydropower studies within agreed milestones, with progress updates throughout.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.3s">
+        <div class="why-num">04</div>
+        <div class="why-title">Nepal-Specific Expertise</div>
+        <p class="why-desc">Deep familiarity with Nepal's topography, DoI/DoHM data sources, local DEM datasets, and the regulatory requirements of Nepal's hydrology and hydropower sectors.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div id="pricing-wrap">
+  <div class="sec">
+    <div class="pricing-head">
+      <div class="sec-eye" style="color:#29B6D8;">Transparent Rates</div>
+      <div class="hl-bar" style="background:linear-gradient(90deg,#29B6D8,#1565C0)"></div>
+      <h2 class="sec-title reveal" style="color:white;">Consulting Rates</h2>
+      <p class="sec-sub reveal">Flexible hourly rates based on task complexity. Fixed-price project quotes available on request.</p>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card reveal">
+        <div class="price-tier">Basic</div>
+        <div class="price-name">GIS Editing</div>
+        <div class="price-use">Spatial data entry, shapefile editing, basic attribute management</div>
+        <div class="price-amount">
+          <span class="price-num">2,000</span>
+          <span class="price-unit">NPR / hour</span>
+        </div>
+        <div class="price-divider"></div>
+        <ul class="price-feats">
+          <li><span class="pcheck">✓</span> Shapefile creation &amp; editing</li>
+          <li><span class="pcheck">✓</span> Attribute table management</li>
+          <li><span class="pcheck">✓</span> Coordinate system conversion</li>
+          <li><span class="pcheck">✓</span> Basic thematic map layout</li>
+          <li><span class="pcheck">✓</span> Data format conversion (KMZ/SHP/GDB)</li>
+        </ul>
+        <a href="#inquiry-wrap" class="price-btn">Get Started</a>
+      </div>
+
+      <div class="price-card best reveal" style="transition-delay:0.1s">
+        <div class="best-badge">Most Popular</div>
+        <div class="price-tier">Standard</div>
+        <div class="price-name">Hydrology &amp; Spatial Analysis</div>
+        <div class="price-use">Catchment analysis, DEM processing, design flood computation</div>
+        <div class="price-amount">
+          <span class="price-num">3,000</span>
+          <span class="price-unit">NPR / hour</span>
+        </div>
+        <div class="price-divider"></div>
+        <ul class="price-feats">
+          <li><span class="pcheck">✓</span> Watershed &amp; catchment delineation</li>
+          <li><span class="pcheck">✓</span> DEM processing &amp; terrain analysis</li>
+          <li><span class="pcheck">✓</span> Hydrological modeling (HEC-HMS)</li>
+          <li><span class="pcheck">✓</span> Runoff curve number computation</li>
+          <li><span class="pcheck">✓</span> Design flood hydrograph generation</li>
+          <li><span class="pcheck">✓</span> Professional map figures for reports</li>
+        </ul>
+        <a href="#inquiry-wrap" class="price-btn">Get Started</a>
+      </div>
+
+      <div class="price-card reveal" style="transition-delay:0.2s">
+        <div class="price-tier">Advanced</div>
+        <div class="price-name">Flood / Hydropower GIS</div>
+        <div class="price-use">Full-scale flood hazard mapping or hydropower layout design</div>
+        <div class="price-amount">
+          <span class="price-num">4,000</span>
+          <span class="price-unit">NPR / hour</span>
+        </div>
+        <div class="price-divider"></div>
+        <ul class="price-feats">
+          <li><span class="pcheck">✓</span> 2D flood inundation modeling (HEC-RAS)</li>
+          <li><span class="pcheck">✓</span> Hazard zone mapping &amp; risk classification</li>
+          <li><span class="pcheck">✓</span> Hydropower full layout &amp; penstock profiling</li>
+          <li><span class="pcheck">✓</span> Multi-scenario return period analysis</li>
+          <li><span class="pcheck">✓</span> EIA-ready GIS deliverables</li>
+          <li><span class="pcheck">✓</span> Technical report &amp; map atlas</li>
+        </ul>
+        <a href="#inquiry-wrap" class="price-btn">Get Started</a>
+      </div>
+
+    </div>
+    <p style="text-align:center;color:rgba(255,255,255,0.35);font-size:13px;margin-top:28px;">
+      Fixed-price quotes available for defined project scopes. Academic thesis support rates negotiable.
+    </p>
+  </div>
+</div>
+
+<!-- CLIENT INQUIRY FORM -->
+<div id="inquiry-wrap">
+  <div class="sec" style="padding-top:80px;padding-bottom:80px;">
+    <div class="inq-box reveal">
+      <div class="inq-top">
+        <h2>Request a Consultation</h2>
+        <p>Fill in your details and I'll get back to you within 24 hours with a tailored quote.</p>
+      </div>
+
+      <!-- Form body -->
+      <div class="inq-body" id="form-body">
+        <div class="frow">
+          <div class="fgroup">
+            <label>Full Name <span>*</span></label>
+            <input type="text" id="f-name" placeholder="e.g. Ram Bahadur Shrestha" autocomplete="name">
+          </div>
+          <div class="fgroup">
+            <label>Contact Number <span>*</span></label>
+            <input type="tel" id="f-phone" placeholder="e.g. 9841234567" autocomplete="tel">
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fgroup">
+            <label>Email Address</label>
+            <input type="email" id="f-email" placeholder="your@email.com" autocomplete="email">
+          </div>
+          <div class="fgroup">
+            <label>Organization / Institution</label>
+            <input type="text" id="f-org" placeholder="Company, university, or N/A">
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fgroup">
+            <label>Service Required <span>*</span></label>
+            <select id="f-service">
+              <option value="" disabled selected>— Select a service —</option>
+              <option>Flood Hazard Mapping &amp; Risk Analysis</option>
+              <option>Catchment Delineation &amp; Hydrological Analysis</option>
+              <option>Hydropower GIS Layout Design</option>
+              <option>ArcGIS Pro Spatial Data &amp; Shapefile Work</option>
+              <option>Thematic Map Production</option>
+              <option>Academic Thesis GIS Support</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label>Estimated Budget</label>
+            <select id="f-budget">
+              <option value="" disabled selected>— Select range —</option>
+              <option>Under NPR 5,000</option>
+              <option>NPR 5,000 – 15,000</option>
+              <option>NPR 15,000 – 50,000</option>
+              <option>NPR 50,000 – 1,00,000</option>
+              <option>Above NPR 1,00,000</option>
+              <option>Open to discussion</option>
+            </select>
+          </div>
+        </div>
+        <div class="frow" style="grid-template-columns:1fr;">
+          <div class="fgroup full">
+            <label>Describe Your Work / Project <span>*</span></label>
+            <textarea id="f-desc" placeholder="Briefly describe what you need — e.g. 'I need flood hazard mapping for a 30 km river reach in Chitwan for an EIA report. I have SRTM DEM and survey cross-sections. Deadline is 3 weeks.' The more detail, the better your quote."></textarea>
+          </div>
+        </div>
+        <div class="frow" style="grid-template-columns:1fr 1fr;margin-bottom:0;">
+          <div class="fgroup">
+            <label>Preferred Start Date</label>
+            <input type="date" id="f-date">
+          </div>
+          <div class="fgroup">
+            <label>How Did You Find Me?</label>
+            <select id="f-source">
+              <option value="" disabled selected>— Optional —</option>
+              <option>LinkedIn</option>
+              <option>Referred by a colleague</option>
+              <option>Google / Web search</option>
+              <option>Facebook / Social media</option>
+              <option>University / Institution</option>
+              <option>Previous client</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:28px;">
+          <button class="inq-submit" onclick="submitForm()">Send My Request →</button>
+        </div>
+        <p class="inq-note">
+          By submitting, you agree your info will be used to respond to your enquiry only. 
+          Or reach out directly at <a href="mailto:pbhagat2100@gmail.com">pbhagat2100@gmail.com</a> 
+          or WhatsApp <a href="https://wa.me/9779840176525">+977-9840176525</a>.
+        </p>
+      </div>
+
+      <!-- Success state -->
+      <div class="success-state" id="success-state">
+        <div class="success-circle">✔</div>
+        <h3>Request Sent!</h3>
+        <p>Thank you for reaching out. Pranay will review your project details and reply within 24 hours with a tailored quote.</p>
+        <a href="mailto:pbhagat2100@gmail.com">Or email directly →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact-wrap">
+  <div class="sec">
+    <div class="sec-eye">Get In Touch</div>
+    <div class="hl-bar"></div>
+    <h2 class="sec-title reveal">Contact &amp; Availability</h2>
+    <div class="contact-grid reveal">
+      <div class="contact-dark">
+        <h3>Contact Details</h3>
+        <div class="c-item">
+          <div class="c-ico">📧</div>
+          <div>
+            <div class="c-lbl">Email</div>
+            <div class="c-val"><a href="mailto:pbhagat2100@gmail.com">pbhagat2100@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico">📱</div>
+          <div>
+            <div class="c-lbl">WhatsApp / Viber</div>
+            <div class="c-val"><a href="https://wa.me/9779840176525">+977-9840176525</a></div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico">📍</div>
+          <div>
+            <div class="c-lbl">Location</div>
+            <div class="c-val">Kathmandu, Nepal<br><span style="font-size:13px;color:rgba(255,255,255,0.45)">Remote work available worldwide</span></div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico">🌐</div>
+          <div>
+            <div class="c-lbl">Languages</div>
+            <div class="c-val">English &nbsp;·&nbsp; Nepali &nbsp;·&nbsp; Hindi</div>
+          </div>
+        </div>
+      </div>
+      <div class="avail-card">
+        <h3>Working Hours</h3>
+        <p class="sub">Nepal Standard Time (UTC+5:45)</p>
+        <div class="avail-row">
+          <span class="a-day">Sunday – Friday</span>
+          <span class="a-time">9:00 AM – 6:00 PM</span>
+        </div>
+        <div class="avail-row">
+          <span class="a-day">Saturday</span>
+          <span class="a-time">10:00 AM – 2:00 PM</span>
+        </div>
+        <div class="avail-row">
+          <span class="a-day">Public Holidays</span>
+          <span class="a-closed">By arrangement</span>
+        </div>
+        <div class="avail-row">
+          <span class="a-day">Urgent / Rush work</span>
+          <span class="a-time">Available (+20% rate)</span>
+        </div>
+        <div class="avail-note">
+          <span>📬</span>
+          <span>Typical quote response time: <strong>within 24 hours</strong>. For urgent enquiries, WhatsApp is fastest.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Pranay<span>Bhagat</span></div>
+  <div class="footer-role">REGISTERED CIVIL ENGINEER &nbsp;·&nbsp; GIS &amp; HYDROLOGY SPECIALIST &nbsp;·&nbsp; NEPAL</div>
+  <div class="footer-links">
+    <a href="#about-wrap">About</a>
+    <a href="#services-wrap">Services</a>
+    <a href="#portfolio-wrap">Portfolio</a>
+    <a href="#pricing-wrap">Pricing</a>
+    <a href="#inquiry-wrap">Get a Quote</a>
+    <a href="mailto:pbhagat2100@gmail.com">Email</a>
+    <a href="https://wa.me/9779840176525">WhatsApp</a>
+  </div>
+  <div class="footer-copy">© 2026 Pranay Bhagat &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; <a href="mailto:pbhagat2100@gmail.com">pbhagat2100@gmail.com</a></div>
+</footer>
+
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// Form submission
+function submitForm() {
+  const name    = document.getElementById('f-name').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const service = document.getElementById('f-service').value;
+  const desc    = document.getElementById('f-desc').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const org     = document.getElementById('f-org').value.trim();
+  const budget  = document.getElementById('f-budget').value;
+  const date    = document.getElementById('f-date').value;
+
+  if (!name)    { alert('Please enter your full name.'); return; }
+  if (!phone)   { alert('Please enter your contact number.'); return; }
+  if (!service) { alert('Please select the service you need.'); return; }
+  if (!desc)    { alert('Please describe your work or project.'); return; }
+
+  // Build mailto
+  const subject = encodeURIComponent('GIS Consultation Request – ' + name);
+  const body    = encodeURIComponent(
+    'Hello Pranay,\n\nI would like to request a consultation.\n\n'
+    + 'Name: ' + name + '\n'
+    + 'Contact: ' + phone + '\n'
+    + (email   ? 'Email: ' + email + '\n' : '')
+    + (org     ? 'Organization: ' + org + '\n' : '')
+    + 'Service Required: ' + service + '\n'
+    + (budget  ? 'Budget Range: ' + budget + '\n' : '')
+    + (date    ? 'Preferred Start: ' + date + '\n' : '')
+    + '\nProject Description:\n' + desc + '\n\n'
+    + 'Regards,\n' + name
+  );
+  window.location.href = 'mailto:pbhagat2100@gmail.com?subject=' + subject + '&body=' + body;
+
+  // Show success
+  document.getElementById('form-body').style.display   = 'none';
+  document.getElementById('success-state').style.display = 'block';
+}
+
+// Animate stat numbers
+function animateCount(el, target) {
+  let current = 0;
+  const increment = Math.ceil(target / 40);
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) { current = target; clearInterval(timer); }
+    el.textContent = current + '+';
+  }, 40);
+}
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const t = parseInt(e.target.dataset.target);
+      if (t) animateCount(e.target, t);
+      statsObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => statsObserver.observe(el));
+</script>
+</body>
+</html>
